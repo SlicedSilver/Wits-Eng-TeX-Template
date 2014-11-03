@@ -45,18 +45,6 @@
 %\setmathsfont(Digits,Latin,Greek)[Numbers={Proportional}]{EB Garamond}
 %\setmathrm{EB Garamond}
 
-%\defaultfontfeatures{Mapping=tex-text}
-%\newfontfamily{\smallcaps}[RawFeature={+c2sc,+scmp}]{EB Garamond}
-%\setromanfont[Numbers=OldStyle, Ligatures={Common}]{EB Garamond}
-%\setsansfont[Scale=MatchLowercase, BoldFont={Lato Bold}]{Lato Regular}
-%\setmonofont[Scale=MatchLowercase]{Source Code Pro}
-
-%\defaultfontfeatures{Mapping=tex-text}
-%\newfontfamily{\smallcaps}[RawFeature={+c2sc,+scmp}]{EB Garamond}
-%\setromanfont[Numbers=OldStyle, Ligatures={Common}]{EB Garamond}
-%\setsansfont[Scale=MatchLowercase, BoldFont={Lato Bold}]{Lato Regular}
-%\setmonofont[Scale=MatchLowercase]{Source Code Pro}
-
 % an environment for paragraph-style section
 \providecommand\newthought[1]{%
    \addvspace{1.0\baselineskip plus 0.5ex minus 0.2ex}%
