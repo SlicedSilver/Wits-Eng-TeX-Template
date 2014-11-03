@@ -1,0 +1,41 @@
+%!TEX TS-program = xelatex
+%!TEX encoding = UTF-8 Unicode
+\documentclass[]{Wits}
+\usepackage{graphicx,subfigure,epsfig}
+\usepackage[centertags]{amsmath}
+\usepackage{amsthm,amsfonts,amssymb,graphicx}
+\usepackage{newlfont,bezier,styles/witsthesis,styles/wits}
+\usepackage{subeqnarray}
+\usepackage{fontspec}
+
+\input{dissertation/personalize}
+%%% Please edit the details in the above file.
+
+
+\input{dissertation/frontmatter/symbols}
+\begin{document}
+\begin{preamble}
+\maketitle
+\include{dissertation/frontmatter/acknowledgements}
+\include{dissertation/frontmatter/abstract}
+\include{dissertation/frontmatter/dedication}
+% where does the dedication go?
+ \tableofcontents
+ \listoffigures
+ \listoftables
+ \listofsymbols
+\end{preamble}
+%%%%%%%%%%%%%%%%%%%% Main Body %%%%%%%%%%%%%%%%%%%%
+\include{dissertation/chapters/chapter1}
+\include{dissertation/chapters/chapter2}
+%\include{dissertation/chapters/chapter3}
+%\include{dissertation/chapters/chapter4}
+%\include{dissertation/chapters/chapter5}
+
+\bibliographystyle{unsrt}
+\bibliography{dissertation/references}
+
+\appendix
+\include{dissertation/chapters/appendixA}
+
+\end{document}

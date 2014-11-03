@@ -1,0 +1,301 @@
+\def\fileversion{1.0}
+\def\filedate{3 November 2014}
+\typeout{Document Style Option 'witsthesis' -- Ver. \fileversion\space Released \filedate}
+% Start off with the page style, margins, etc.
+
+% Margins : see (6.1.2)
+\oddsidemargin 14.6mm \evensidemargin 14.6mm
+%\marginparwidth 40pt \marginparsep 10pt % Should never be used
+\marginparwidth 40pt \marginparsep 10pt % Should never be used
+%\topmargin 4mm % some of the 4.6mm seems to be lost!!!
+\topmargin -10mm % some of the 4.6mm seems to be lost!!!
+%\headheight 0mm \headsep 0in % No headers
+\headheight 5mm \headsep 8mm %<--- my addition
+\textheight 242.4mm \textwidth 140mm %textheight seems funny!!
+\brokenpenalty=10000 % Disallow page breaks at hyphenations
+\renewcommand{\baselinestretch}{1.3} % 1.5 or double spacing too much!
+\renewcommand{\textfraction}{0.0} %<--- my addition.***
+\renewcommand{\topfraction}{1.0} %<--- my addition.***
+\renewcommand{\bottomfraction}{1.0} %<--- my addition.***
+\setcounter{topnumber}{10} %<--- my addition.***
+\setcounter{bottomnumber}{10} %<--- my addition.***
+\parindent 0em \parskip 2.8ex % No indents, paragraph spacing.
+
+% Section numbering.
+\setcounter{secnumdepth}{2} % down to subsections, or three levels (0,1,2)
+\setcounter{tocdepth}{2}    % TOC entries down to subsection.
+
+\def\Month{\ifcase\month\or
+January\or February\or March\or April\or May\or June\or
+July\or August\or September\or October\or November\or December\fi}
+\def\Day{\ifcase\day\or
+First\or Second\or Third\or Fourth\or Fifth\or Sixth\or Seventh\or
+Eighth\or Ninth\or Tenth\or Eleventh\or Twelfth\or Thirteenth\or
+Fourteenth\or Fifteenth\or Sixteenth\or Seventeenth\or Eighteenth\or
+Nineteenth\or Twentieth\or Twenty First\or Twenty Second\or Twenty Third\or
+Twenty Fourth\or Twenty Fifth\or Twenty Sixth\or Twenty Seventh\or
+Twenty Eighth\or Twenty Ninth\or Thirtieth\or Thirty First\fi}
+
+% That's all, now generate the title page: FROM MITTHESIS.STY
+\def\maketitle{\begin{titlepage}
+% Let's first prohibit hyphenation in this title page.
+\hyphenpenalty=10000       % Absolutely no hyphenation breaks
+% That's not enough, redefine the \pretolerance
+\vspace*{50\p@}% The raggedright below prohibits under/over-full boxes
+%{\Huge\bf \raggedright \textcolor{SchoolColor}{\@title} \par}
+{\Huge\bf \raggedright \@title \par}
+\vspace*{20pt}
+\hyphenpenalty=50
+\pretolerance=100
+{\Large\bf \@author \par}
+\vspace*{\fill}
+A \@documenttype\ submitted to the Faculty of \@faculty, %Engineering and the Built Environment,
+\@university, \@universitycity, in \@partial fulfilment of the
+requirements for the degree of \@degree .\par
+\vspace*{2em}
+\@universitycity , \@degreemonth\space\@degreeyear
+\end{titlepage}
+%Now for the declaration page
+  \vspace*{50\p@}%
+  {\parindent \z@ \raggedright
+    \LARGE \bf  %**** was huge
+    Declaration\par
+    \nobreak
+    \vskip 40\p@
+  }
+\addcontentsline{toc}{chapter}{Declaration}
+I declare that this \@documenttype\ is my own, unaided work, except
+where otherwise acknowledged. It is being submitted for the degree of
+\@degree\ in the \@university, \@universitycity.
+It has not been submitted before for any degree or examination at any
+other university.\par
+\vspace*{\fill}
+{\raggedright
+Signed this \rule{0.5cm}{0.4pt} day of \rule{2cm}{0.4pt} 20\rule{0.5cm}{0.4pt}\par
+\vspace*{2.5cm}
+\rule{6cm}{0.4pt}\\
+\@author.\par
+\vspace*{10pt}}
+\newpage
+}
+\renewenvironment{abstract}{\chapter*{Abstract}
+\addcontentsline{toc}{chapter}{Abstract}}
+{\par\newpage}
+
+% The dedication environment is centered (page and line), italicised and
+% normal size print
+\newenvironment{dedication}{\vspace*{50\p@}%
+\begin{center}\it}{\end{center}\rm\par\newpage}
+% For a quote page, use the dedication page and put the whole quote
+% in a minipage
+
+\newenvironment{acknowledgements}{\chapter*{Acknowledgements}
+\addcontentsline{toc}{chapter}{Acknowledgements}}
+{\par\newpage}
+
+\newenvironment{preface}{\chapter*{Preface}
+\addcontentsline{toc}{chapter}{Preface}}
+{\par\newpage}
+
+\newenvironment{publishedwork}{\chapter*{Published Work}
+\addcontentsline{toc}{chapter}{Published Work}}
+{\par\newpage}
+
+\newenvironment{contribution}{\chapter*{Scope and Contribution}
+\addcontentsline{toc}{chapter}{Scope and Contribution}}
+{\par\newpage}
+
+
+% We define a preamble environment, which defines page numbering as
+% roman, and resets the page counter to zero (through one command)
+% Arabic pagenumbering reset to zero occurs at termination of the
+% environment. The titlepage, abstract, declaration,
+% acknowledgements, dedication, quote, etc. occur in here
+\newenvironment{preamble}{\pagenumbering{roman}}%
+{\clearpage\pagenumbering{arabic}}
+
+% The tableofcontents command should add Contents to the Table of
+% Contents!! Same for the LoFs and LoTs
+\def\tableofcontents{
+  \chapter*{\contentsname
+        \@mkboth{\uppercase{\contentsname}}{\uppercase{\contentsname}}}%
+  \addcontentsline{toc}{chapter}{Contents}\@starttoc{toc}\pagebreak[4]}
+
+\def\listoffigures{\@restonecolfalse
+  \if@twocolumn\@restonecoltrue\onecolumn\fi
+  \chapter*{\listfigurename\@mkboth{\uppercase{\listfigurename}}%
+     {\uppercase{\listfigurename}}}
+   \addcontentsline{toc}{chapter}{\listfigurename}
+   \@starttoc{lof}\if@restonecol
+    \twocolumn\fi}
+
+\def\listoftables{\@restonecolfalse
+  \if@twocolumn\@restonecoltrue\onecolumn\fi
+  \chapter*{\listtablename\@mkboth{\uppercase{\listtablename}}%
+   {\uppercase{\listtablename}}}
+  \addcontentsline{toc}{chapter}{\listtablename}
+  \@starttoc{lot}\if@restonecol
+  \twocolumn\fi}
+
+% Here we define the bibliography stuff that makes a References
+% Section and a Bibliography Section.
+% We do this by defining two commands, \mainfile and \bibfile
+% \mainfile - Make this document the main file. From NOFM.STY, we will
+%             redefine the \end{document} command to:
+%       1. increase the page number by one.
+%       2. Place a \addtocontents{toc}{chapter}{Bibliography}
+%       3. Store the last page number in the .AUX file.
+% \bibfile - Make this document the Bibliography file. This will
+%            contain only \nocite's for the bibliography section.
+%            And of course the \bibliographystyle and \bibliography
+%            commands.
+%       But the page number is picked up from the \mainfile by the
+%       \bibfile command.
+% For now, the \mainfile command will produce an extra page.
+% This page will be able to link the Bibliography.
+% We have to put them in separate style files for now. I don't know how
+% to make it handle this more elegantly.
+
+% Let's tell the \thebibliography command to go to the TOC too...
+% and start on a new page like a chapter
+\def\thebibliography#1{\chapter*{\bibname\@mkboth
+ {\uppercase{\bibname}}{\uppercase{\bibname}}}
+ \addcontentsline{toc}{chapter}{\bibname}\list
+ {[\arabic{enumi}]}{\settowidth\labelwidth{[#1]}\leftmargin\labelwidth
+ \advance\leftmargin\labelsep
+ \usecounter{enumi}}
+ \def\newblock{\hskip .11em plus .33em minus .07em}
+ \sloppy\clubpenalty4000\widowpenalty4000
+ \sfcode`\.=1000\relax}
+
+% PERSONAL OPINION: The chapter headings are too large, so
+%\def\@makechapterhead#1{%
+%  \vspace*{50\p@}%
+%  {\parindent \z@\raggedright
+%    \ifnum \c@secnumdepth >\m@ne
+%     \LARGE\bf \@chapapp{} \thechapter
+%    \par
+%    \vskip 15\p@ \fi
+%    \huge \bf
+%    #1\par
+%   \nobreak
+%    \vskip 30\p@
+%  }}
+
+%****My modification:
+\def\chaptername{}
+\def\appendixname{Appendix~}
+\def\bibname{References}
+
+\def\@makechapterhead#1{%
+  \vspace*{50\p@}%
+  {\parindent \z@\raggedright
+    \ifnum \c@secnumdepth >\m@ne%
+     \begin{list}{\LARGE\bf\@chapapp{}\thechapter\,\,\,\protect\hfill}{}%
+%     \setlength{\labelsep}{8mm}%
+%     \setlength{\leftmargin}{24mm}%
+%     \setlength{\labelwidth}{16mm}%
+%     \setlength{\listparindent}{0mm}%
+%     \setlength{\itemindent}{0mm}%
+%     \setlength{\itemindent}{0mm}%
+     \item\LARGE\bf#1%
+     \end{list}%
+    \else
+     \LARGE \bf #1\par
+    \fi
+   \nobreak
+    \vskip 30\p@
+  }}
+
+%***My modification:
+
+%\def\section{\@startsection {section}{1}{\z@}{-3.5ex plus-1ex minus
+%    -.2ex}{2.3ex plus.2ex}{\reset@font\Large\bf}}
+%\def\subsection{\@startsection{subsection}{2}{\z@}{-3.25ex plus-1ex
+%    minus-.2ex}{1.5ex plus.2ex}{\reset@font\large\bf}}
+%\def\subsubsection{\@startsection{subsubsection}{3}{\z@}{-3.25ex plus
+%    -1ex minus-.2ex}{1.5ex plus.2ex}{\reset@font\normalsize\bf}}
+
+%\def\@makeschapterhead#1{%
+%  \vspace*{50\p@}%
+%  {\parindent \z@ \raggedright
+%    \Huge \bf
+%    #1\par
+%    \nobreak
+%    \vskip 40\p@
+%  }}
+
+
+\def\@makeschapterhead#1{%
+  \vspace*{50\p@}%
+  {\parindent \z@ \raggedright
+%    \huge \bf
+    \LARGE \bf
+    #1\par
+    \nobreak
+    \vskip 30\p@
+  }}
+
+% This next stuff comes from where.sty, which comes from losymbol.sty...
+% It is used after an equation, to describe all variables in the
+% equation
+% The environment `where' puts the ``where'' on the left, then
+% begins a table of two columns, separated by `='.
+% For symbols NOT in the ListofSymbols, use
+% $<symbol>$ & <description> \\
+% and for those IN the ListofSymbols, use
+% \wheresymbol{$<symbol>$}{<description>} \\
+% to add symbols outside this environment, use
+% \addsymbol{$<symbol>$}{<description>}
+\newdimen\@wherewdth
+\@wherewdth=10cm
+\def\wherewidth#1{\@wherewdth=#1}
+\newenvironment{where}{\begin{flushleft}
+where\hfill\nopagebreak\\ \hspace*{2em}
+\begin{tabular}{r@{   }l} %add the \hss before
+}{\end{tabular}\\
+\end{flushleft}}
+\def\losymbolsname{List of Symbols}
+\def\listofsymbols{\@ifundefined{chapter}{%
+                \section*{\losymbolsname \@mkboth
+                {\uppercase{\losymbolsname}}{\uppercase{\losymbolsname}}}
+                \addcontentsline{toc}{section}{\losymbolsname}\@starttoc{los}
+        }{%
+                \chapter*{\losymbolsname \@mkboth
+                {\uppercase{\losymbolsname}}{\uppercase{\losymbolsname}}}
+                \addcontentsline{toc}{chapter}{\losymbolsname}\@starttoc{los}
+        }
+}
+%
+%command for putting text in file \jobname.loa is \addsymbol or \wheresymbol
+%command that is used for actually producing text is called
+%\makenicesymbolline
+\def\addsymbol#1#2{%
+\addtocontents{los}{\protect\makenicesymbolline{#1}{#2}}}
+%That was the normal-form, now for the where-form.
+\def\wheresymbol#1#2{%
+\addtocontents{los}{\protect\makenicesymbolline{#1}{#2}}%
+#1 & \begin{minipage}[t]{\@wherewdth}#2\strut\end{minipage} }
+%
+%physical dimensions of columns
+%
+\newdimen\@lcsym %width of left column
+\@lcsym=5em      %default 5em
+%
+\newdimen\@mcsym %width of mid column (space)
+\@mcsym=2em      %default 2em
+%
+\newdimen\@rcsym %width of right column
+\@rcsym=\hsize   %initial width=textwidth
+%
+\advance\@rcsym by -\@lcsym %subtract lcsym
+\advance\@rcsym by -\@mcsym %subtract mid
+%
+%command for producing the actual line uses standard minipages
+%to cope with long definitions
+%
+\def\makenicesymbolline#1#2{%
+\begin{minipage}[t]{\@lcsym}#1\end{minipage}%
+$\hspace*{\@mcsym}$%
+\begin{minipage}[t]{\@rcsym}#2\end{minipage}\par}
+%end of where.sty/losymbol.sty
