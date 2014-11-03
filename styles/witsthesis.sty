@@ -38,12 +38,17 @@ Twenty Eighth\or Twenty Ninth\or Thirtieth\or Thirty First\fi}
 
 % That's all, now generate the title page: FROM MITTHESIS.STY
 \def\maketitle{\begin{titlepage}
+\begin{flushright}
+\includegraphics[width=125pt]{styles/WitsVectorLogo.eps}
+\end{flushright}
 % Let's first prohibit hyphenation in this title page.
 \hyphenpenalty=10000       % Absolutely no hyphenation breaks
 % That's not enough, redefine the \pretolerance
+
 \vspace*{50\p@}% The raggedright below prohibits under/over-full boxes
 %{\Huge\bf \raggedright \textcolor{SchoolColor}{\@title} \par}
-{\Huge\bf \raggedright \@title \par}
+{\vspace{100pt}
+\Huge\bf \raggedright \textsc{\@title} \par}
 \vspace*{20pt}
 \hyphenpenalty=50
 \pretolerance=100
