@@ -71,6 +71,7 @@
 
 # listings
 *.lol
+*.los
 
 # makeidx
 *.idx
