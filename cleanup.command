@@ -12,7 +12,7 @@ do
   rm `find ./ -name $TYPE` -rf
 done
 
-cd dissertation/chapters
+cd content/chapters
 rm `find ./ -name "*.aux"` -rf
 cd ..
 
