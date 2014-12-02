@@ -3,7 +3,7 @@
 This package provides all the files needed to support the production and typesetting of a PhD dissertation at the [University of the Witwatersrand](http://www.wits.ac.za/) (Johannesburg, South Africa). The format and styling is based closely on the requirements published by the Faculty of Engineering and the Built Environment.
   
 ## Status
-:warning: The current status of this project is **IMCOMPLETE**.:warning:  
+:warning: The current status of this project is **INCOMPLETE**.:warning:  
 Work is still being done to match the required university style. 
 
 ## Documentation
